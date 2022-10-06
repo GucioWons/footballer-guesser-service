@@ -1,5 +1,7 @@
 package com.guciowons.footballguesser.footballer;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.guciowons.footballguesser.feign.ExternalSquad;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ public class FootballerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Footballer>> getFootballers(){
+    public ResponseEntity<ExternalSquad> getFootballers(){
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(footballerService.getFotballers());
