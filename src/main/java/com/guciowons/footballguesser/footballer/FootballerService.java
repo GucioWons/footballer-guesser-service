@@ -14,11 +14,15 @@ public class FootballerService {
         this.footballerRepository = footballerRepository;
     }
 
-    public List<Footballer> getFootballersByClub(String club) {
-        return footballerRepository.getFootballersByClub(club);
-    }
-
     public List<Footballer> getFotballers() {
         return footballerRepository.getFootballers();
+    }
+
+    public List<Footballer> getFootballersByClub(Integer clubId) {
+        return footballerRepository.getFootballersByClub(clubId);
+    }
+
+    public List<Footballer> getFootballersByLeague(Integer leagueId) {
+        return footballerRepository.getFootballersByLeague(leagueId);
     }
 }

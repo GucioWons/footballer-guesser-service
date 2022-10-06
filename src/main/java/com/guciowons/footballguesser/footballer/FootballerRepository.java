@@ -10,13 +10,13 @@ import java.util.List;
 @Repository
 public class FootballerRepository implements FootballerDao {
     private List<League> leagues = Arrays.asList(
-            new League("Bundesliga"),
-            new League("Premier League"));
+            new League(1, "Bundesliga"),
+            new League(2, "Premier League"));
 
     private List<Club> clubs = Arrays.asList(
-            new Club("Bayern Munchen", "BAY", leagues.get(0)),
-            new Club("Borussia Dortmund", "BVB", leagues.get(0)),
-            new Club("Manchester City", "MCI", leagues.get(1)));
+            new Club(1, "Bayern Munchen", "BAY", leagues.get(0)),
+            new Club(2, "Borussia Dortmund", "BVB", leagues.get(0)),
+            new Club(3, "Manchester City", "MCI", leagues.get(1)));
 
     private List<Footballer> footballers = Arrays.asList(
             new Footballer(1, "Mannuel", "Neuer", "Germany", clubs.get(0), 1, Position.GK),
@@ -32,7 +32,12 @@ public class FootballerRepository implements FootballerDao {
     }
 
     @Override
-    public List<Footballer> getFootballersByClub(String shortcut){
-        return footballers.stream().filter(footballer -> footballer.getClub().getShortcut().equals(shortcut)).toList();
+    public List<Footballer> getFootballersByClub(Integer clubId){
+        return footballers.stream().filter(footballer -> footballer.getClub().getId().equals(clubId)).toList();
+    }
+
+    @Override
+    public List<Footballer> getFootballersByLeague(Integer leagueId) {
+        return footballers.stream().filter(footballer -> footballer.getClub().getLeague().getId().equals(leagueId)).toList();
     }
 }

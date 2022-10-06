@@ -25,10 +25,17 @@ public class FootballerController {
                 .body(footballerService.getFotballers());
     }
 
-    @GetMapping(value = "/club/{club}")
-    public ResponseEntity<List<Footballer>> getFootballersByClub(@PathVariable String club){
+    @GetMapping(value = "/club/{clubId}")
+    public ResponseEntity<List<Footballer>> getFootballersByClub(@PathVariable Integer clubId){
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(footballerService.getFootballersByClub(club));
+                .body(footballerService.getFootballersByClub(clubId));
+    }
+
+    @GetMapping(value = "/league/{leagueId}")
+    public ResponseEntity<List<Footballer>> getFootballersByLeague(@PathVariable Integer leagueId){
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(footballerService.getFootballersByLeague(leagueId));
     }
 }

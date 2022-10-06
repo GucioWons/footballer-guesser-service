@@ -1,10 +1,16 @@
 package com.guciowons.footballguesser.entity;
 
 public class League {
+    private final Integer id;
     private String name;
 
-    public League(String name) {
+    public League(Integer id, String name) {
+        this.id = id;
         this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
