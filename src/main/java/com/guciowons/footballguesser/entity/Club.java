@@ -5,6 +5,12 @@ public class Club {
     private String shortcut;
     private League league;
 
+    public Club(String name, String shortcut, League league) {
+        this.name = name;
+        this.shortcut = shortcut;
+        this.league = league;
+    }
+
     public String getName() {
         return name;
     }
