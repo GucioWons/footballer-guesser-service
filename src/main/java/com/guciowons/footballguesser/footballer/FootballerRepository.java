@@ -4,14 +4,16 @@ import com.guciowons.footballguesser.entity.Club;
 import com.guciowons.footballguesser.entity.League;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Repository
 public class FootballerRepository implements FootballerDao {
+    private List<Footballer> DB = new ArrayList<>();
     @Override
     public List<Footballer> getFootballers() {
-        return null;
+        return DB;
     }
 
     @Override

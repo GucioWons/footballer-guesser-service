@@ -1,9 +1,11 @@
 package com.guciowons.footballguesser.footballer;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.guciowons.footballguesser.feign.ExternalSquadClient;
 import com.guciowons.footballguesser.feign.ExternalSquadToFootballersConverter;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -19,9 +21,12 @@ public class FootballerService {
         this.externalSquadToFootballersConverter = externalSquadToFootballersConverter;
     }
 
-    public List<Footballer> getFotballers() {
-        return externalSquadToFootballersConverter
-                .convertExternalSquadToFootballers(externalSquadClient.getExternalSquad("5740d267c15143f5b1ab75b03ffce4a3", 65));
+    public JsonNode getFotballers() {
+        List<String> leagues = Arrays.asList("BL1", "PL");
+        return externalSquadClient.getExternalTeams("5740d267c15143f5b1ab75b03ffce4a3");
+
+//        return externalSquadToFootballersConverter
+//                .convertExternalSquadToFootballers(externalSquadClient.getExternalSquad("5740d267c15143f5b1ab75b03ffce4a3", 65));
     }
 
     public List<Footballer> getFootballersByClub(Integer clubId) {
