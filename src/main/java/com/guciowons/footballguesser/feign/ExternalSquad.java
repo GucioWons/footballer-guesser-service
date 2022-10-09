@@ -3,34 +3,7 @@ package com.guciowons.footballguesser.feign;
 import java.util.List;
 
 public class ExternalSquad {
-    private int id;
-    private String name;
-    private String tla;
     private List<ExternalPlayer> squad;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTla() {
-        return tla;
-    }
-
-    public void setTla(String tla) {
-        this.tla = tla;
-    }
 
     public List<ExternalPlayer> getSquad() {
         return squad;

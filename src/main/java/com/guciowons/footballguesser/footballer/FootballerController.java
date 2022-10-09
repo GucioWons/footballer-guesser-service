@@ -1,6 +1,5 @@
 package com.guciowons.footballguesser.footballer;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,7 @@ public class FootballerController {
     }
 
     @GetMapping
-    public ResponseEntity<JsonNode> getFootballers(){
+    public ResponseEntity<List<Footballer>> getFootballers() throws InterruptedException {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(footballerService.getFotballers());

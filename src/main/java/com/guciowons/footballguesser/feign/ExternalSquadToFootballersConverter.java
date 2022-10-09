@@ -10,11 +10,13 @@ import java.util.List;
 
 @Component
 public class ExternalSquadToFootballersConverter {
-    public List<Footballer> convertExternalSquadToFootballers(ExternalSquad externalSquad){
-        Club club = new Club(externalSquad.getId(), externalSquad.getName(), externalSquad.getTla(),
-                new League(1, "Premier League"));
+    public List<Footballer> convertExternalSquadToFootballers(ExternalSquad externalSquad,
+                                                              ExternalTeams.ExternalTeam externalTeam,
+                                                              ExternalTeams.ExternalCompetition externalCompetition){
+        Club club = new Club(externalTeam.getId(), externalTeam.getName(), externalTeam.getTla(),
+                new League(externalCompetition.getId(), externalCompetition.getName()));
         return externalSquad.getSquad().stream()
-                .filter(externalPlayer -> externalPlayer.getShirtNumber() != null)
+                .filter(externalPlayer -> externalPlayer.getShirtNumber() != null && externalPlayer.getPosition() != null)
                 .map(externalPlayer -> convertPlayerToFootballer(externalPlayer, club))
                 .toList();
 
