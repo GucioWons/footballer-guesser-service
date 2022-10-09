@@ -19,10 +19,10 @@ public class FootballerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Footballer>> getFootballers() throws InterruptedException {
+    public ResponseEntity<List<Footballer>> getFootballers(){
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(footballerService.getFotballers());
+                .body(footballerService.getFootballers());
     }
 
     @GetMapping(value = "/club/{clubId}")

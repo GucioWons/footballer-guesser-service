@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class FootballerService {
@@ -23,30 +24,52 @@ public class FootballerService {
         this.externalSquadToFootballersConverter = externalSquadToFootballersConverter;
     }
 
-    public List<Footballer> getFotballers() throws InterruptedException {
+    public List<Footballer> getFootballers(){
         List<String> leagues = Arrays.asList("BL1", "PL");
         List<Footballer> footballers = new ArrayList<>();
-        int i =0;
-        for(String league : leagues){
-            if(i == 10){
-                i=0;
-                TimeUnit.MINUTES.sleep(1);
+        AtomicInteger counter = new AtomicInteger(0);
+        leagues.forEach(league -> {
+            try {
+                checkCounter(counter);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-            ExternalTeams externalTeams = externalSquadClient.getExternalTeams("5740d267c15143f5b1ab75b03ffce4a3", league);
-            i++;
-            for(ExternalTeams.ExternalTeam externalTeam : externalTeams.getTeams()){
-                if(i == 10){
-                    i=0;
-                    TimeUnit.MINUTES.sleep(1);
+            ExternalTeams externalTeams = getTeamsFromLeague(league);
+            externalTeams.getTeams().forEach(externalTeam -> {
+                try {
+                    checkCounter(counter);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
-                footballers.addAll(externalSquadToFootballersConverter.convertExternalSquadToFootballers(
-                        externalSquadClient.getExternalSquad("5740d267c15143f5b1ab75b03ffce4a3",
-                                externalTeam.getId()), externalTeam, externalTeams.getCompetition()));
-                i++;
-            }
-        }
+                footballers.addAll(getPlayersFromTeam(externalTeam, externalTeams));
+            });
+        });
         return footballers;
     }
+
+    private void checkCounter(AtomicInteger counter) throws InterruptedException {
+        System.out.println(counter.get());
+        if (counter.get() % 10 == 0 && counter.get() != 0) {
+            System.out.println("Pauza");
+            TimeUnit.MINUTES.sleep(1);
+        }
+        counter.incrementAndGet();
+    }
+
+    private ExternalTeams getTeamsFromLeague(String league) {
+        return externalSquadClient.getExternalTeams("5740d267c15143f5b1ab75b03ffce4a3", league);
+    }
+
+    private List<Footballer> getPlayersFromTeam(ExternalTeams.ExternalTeam externalTeam, ExternalTeams externalTeams) {
+        return externalSquadToFootballersConverter.convertExternalSquadToFootballers(externalSquadClient.getExternalSquad(
+                "5740d267c15143f5b1ab75b03ffce4a3", externalTeam.getId()), externalTeam, externalTeams.getCompetition());
+    }
+
+
+
+
+
+
 
     public List<Footballer> getFootballersByClub(Integer clubId) {
         return footballerRepository.getFootballersByClub(clubId);
