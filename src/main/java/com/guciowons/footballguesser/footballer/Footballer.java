@@ -1,22 +1,31 @@
 package com.guciowons.footballguesser.footballer;
 
-import com.guciowons.footballguesser.entity.Club;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "footballer")
 public class Footballer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private Integer externalId;
     private String name;
     private String nationality;
-    private Club club;
+    private Integer clubId;
     private Integer number;
     private Position position;
 
-    public Footballer(Integer id, String name, String nationality, Club club, Integer number, Position position) {
-        this.id = id;
+    public Footballer(Integer externalId, String name, String nationality, Integer clubId, Integer number, Position position) {
+        this.externalId = externalId;
         this.name = name;
         this.nationality = nationality;
-        this.club = club;
+        this.clubId = clubId;
         this.number = number;
         this.position = position;
+    }
+
+    public Footballer() {
+
     }
 
     public Integer getId() {
@@ -25,6 +34,14 @@ public class Footballer {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(Integer externalId) {
+        this.externalId = externalId;
     }
 
     public String getName() {
@@ -43,12 +60,12 @@ public class Footballer {
         this.nationality = nationality;
     }
 
-    public Club getClub() {
-        return club;
+    public Integer getClubId() {
+        return clubId;
     }
 
-    public void setClub(Club club) {
-        this.club = club;
+    public void setClub(Integer clubId) {
+        this.clubId = clubId;
     }
 
     public Integer getNumber() {
