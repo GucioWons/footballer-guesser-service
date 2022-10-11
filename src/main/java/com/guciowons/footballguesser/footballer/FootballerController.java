@@ -22,7 +22,7 @@ public class FootballerController {
     public ResponseEntity<List<Footballer>> getFootballers(){
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(footballerService.getFotballers());
+                .body(footballerService.getFootballers());
     }
 
     @GetMapping(value = "/club/{clubId}")

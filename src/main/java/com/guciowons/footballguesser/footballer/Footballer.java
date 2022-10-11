@@ -4,17 +4,15 @@ import com.guciowons.footballguesser.entity.Club;
 
 public class Footballer {
     private Integer id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String nationality;
     private Club club;
     private Integer number;
     private Position position;
 
-    public Footballer(Integer id, String firstName, String lastName, String nationality, Club club, Integer number, Position position) {
+    public Footballer(Integer id, String name, String nationality, Club club, Integer number, Position position) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.nationality = nationality;
         this.club = club;
         this.number = number;
@@ -29,20 +27,12 @@ public class Footballer {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getNationality() {
