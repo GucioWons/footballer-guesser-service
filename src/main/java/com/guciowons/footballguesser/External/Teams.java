@@ -1,28 +1,28 @@
-package com.guciowons.footballguesser.feign;
+package com.guciowons.footballguesser.External;
 
 import java.util.List;
 
-public class ExternalTeams {
-    private List<ExternalTeam> teams;
-    private ExternalCompetition competition;
+public class Teams {
+    private List<Team> teams;
+    private Competition competition;
 
-    public List<ExternalTeam> getTeams() {
+    public List<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(List<ExternalTeam> teams) {
+    public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
 
-    public ExternalCompetition getCompetition() {
+    public Competition getCompetition() {
         return competition;
     }
 
-    public void setCompetition(ExternalCompetition competition) {
+    public void setCompetition(Competition competition) {
         this.competition = competition;
     }
 
-    public static class ExternalCompetition {
+    public static class Competition {
         private int id;
         private String name;
 
@@ -43,7 +43,7 @@ public class ExternalTeams {
         }
     }
 
-    public static class ExternalTeam {
+    public static class Team {
         private int id;
         private String name;
         private String tla;

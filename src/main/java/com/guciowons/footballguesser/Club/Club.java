@@ -1,5 +1,7 @@
 package com.guciowons.footballguesser.Club;
 
+import com.guciowons.footballguesser.League.League;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,13 +14,14 @@ public class Club {
     private Integer externalId;
     private String name;
     private String shortcut;
-    private Integer leagueId;
+    @ManyToOne
+    private League league;
 
-    public Club(Integer externalId, String name, String shortcut, Integer leagueId) {
+    public Club(Integer externalId, String name, String shortcut, League league) {
         this.externalId = externalId;
         this.name = name;
         this.shortcut = shortcut;
-        this.leagueId = leagueId;
+        this.league = league;
     }
 
     public Club() {
@@ -57,11 +60,11 @@ public class Club {
         this.shortcut = shortcut;
     }
 
-    public Integer getLeagueId() {
-        return leagueId;
+    public League getLeague() {
+        return league;
     }
 
-    public void setLeague(Integer leagueId) {
-        this.leagueId = leagueId;
+    public void setLeague(League league) {
+        this.league = league;
     }
 }
