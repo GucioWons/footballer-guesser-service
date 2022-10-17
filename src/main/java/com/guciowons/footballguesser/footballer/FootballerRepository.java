@@ -1,43 +1,10 @@
 package com.guciowons.footballguesser.footballer;
 
-import com.guciowons.footballguesser.entity.Club;
-import com.guciowons.footballguesser.entity.League;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-@Repository
-public class FootballerRepository implements FootballerDao {
-    private List<Footballer> DB = new ArrayList<>();
-    @Override
-    public List<Footballer> getFootballers() {
-        return DB;
-    }
-
-    @Override
-    public List<Footballer> getFootballersByClub(Integer clubId) {
-        return null;
-    }
-
-    @Override
-    public List<Footballer> getFootballersByLeague(Integer leagueId) {
-        return null;
-    }
-
-//    @Override
-//    public List<Footballer> getFootballers(){
-//        return footballers;
-//    }
-//
-//    @Override
-//    public List<Footballer> getFootballersByClub(Integer clubId){
-//        return footballers.stream().filter(footballer -> footballer.getClub().getId().equals(clubId)).toList();
-//    }
-//
-//    @Override
-//    public List<Footballer> getFootballersByLeague(Integer leagueId) {
-//        return footballers.stream().filter(footballer -> footballer.getClub().getLeague().getId().equals(leagueId)).toList();
-//    }
+public interface FootballerRepository extends JpaRepository<Footballer, Integer> {
+    List<Footballer> findAllByClubId(Integer clubId);
+    List<Footballer> findAllByClubLeagueId(Integer leagueId);
 }

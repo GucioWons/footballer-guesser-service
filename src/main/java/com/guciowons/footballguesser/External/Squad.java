@@ -1,26 +1,26 @@
-package com.guciowons.footballguesser.feign;
+package com.guciowons.footballguesser.External;
 
 import java.util.List;
 
-public class ExternalSquad {
-    private List<ExternalPlayer> squad;
+public class Squad {
+    private List<Player> squad;
 
-    public List<ExternalPlayer> getSquad() {
+    public List<Player> getSquad() {
         return squad;
     }
 
-    public void setSquad(List<ExternalPlayer> squad) {
+    public void setSquad(List<Player> squad) {
         this.squad = squad;
     }
 
-    public static class ExternalPlayer {
+    public static class Player {
         private Integer id;
         private String name;
         private String position;
         private String nationality;
         private Integer shirtNumber;
 
-        public ExternalPlayer(Integer id, String name, String position, String nationality, Integer shirtNumber) {
+        public Player(Integer id, String name, String position, String nationality, Integer shirtNumber) {
             this.id = id;
             this.name = name;
             this.position = position;

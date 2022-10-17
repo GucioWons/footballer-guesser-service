@@ -1,20 +1,47 @@
-package com.guciowons.footballguesser.entity;
+package com.guciowons.footballguesser.Club;
 
+import com.guciowons.footballguesser.League.League;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="club")
 public class Club {
-    private final Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    private Integer externalId;
     private String name;
     private String shortcut;
+    @ManyToOne
     private League league;
 
-    public Club(Integer id, String name, String shortcut, League league) {
-        this.id = id;
+    public Club(Integer externalId, String name, String shortcut, League league) {
+        this.externalId = externalId;
         this.name = name;
         this.shortcut = shortcut;
         this.league = league;
     }
 
+    public Club() {
+
+    }
+
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(Integer externalId) {
+        this.externalId = externalId;
     }
 
     public String getName() {
