@@ -8,9 +8,8 @@ import javax.persistence.*;
 @Table(name="club")
 public class Club {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private Integer externalId;
     private String name;
     private String shortcut;

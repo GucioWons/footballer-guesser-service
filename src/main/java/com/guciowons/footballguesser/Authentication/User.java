@@ -3,10 +3,10 @@ package com.guciowons.footballguesser.Authentication;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = "username"), @UniqueConstraint(columnNames = "email")}, name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
     private String email;
