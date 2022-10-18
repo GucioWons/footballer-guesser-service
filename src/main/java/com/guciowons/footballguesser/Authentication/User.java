@@ -1,6 +1,13 @@
 package com.guciowons.footballguesser.Authentication;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String username;
     private String email;
     private String password;
@@ -9,6 +16,18 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public User() {
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
