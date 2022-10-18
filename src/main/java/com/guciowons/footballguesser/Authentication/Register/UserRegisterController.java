@@ -3,6 +3,7 @@ package com.guciowons.footballguesser.Authentication.Register;
 import com.guciowons.footballguesser.Authentication.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,6 @@ public class UserRegisterController {
                                              @RequestParam String password){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(userRegisterService.createUser(username, email, password));
+                .body(userRegisterService.createUser(username, email, BCrypt.hashpw(password, BCrypt.gensalt())));
     }
 }
