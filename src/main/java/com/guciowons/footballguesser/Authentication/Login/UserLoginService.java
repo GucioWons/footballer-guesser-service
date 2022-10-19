@@ -13,9 +13,9 @@ public class UserLoginService {
         this.userRepository = userRepository;
     }
 
-    public User loginUser(String email, String password) {
-        return userRepository.findByEmail(email)
-                .filter(user -> BCrypt.checkpw(password, user.getPassword()))
+    public User loginUser(Login login) {
+        return userRepository.findByEmail(login.getEmail())
+                .filter(user -> BCrypt.checkpw(login.getPassword(), user.getPassword()))
                 .orElseThrow(() -> new RuntimeException("Incorrect email or password"));
 
     }
