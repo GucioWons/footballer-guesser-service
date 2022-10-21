@@ -1,6 +1,7 @@
-package com.guciowons.footballguesser.Authentication;
+package com.guciowons.footballguesser.Users;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(uniqueConstraints={@UniqueConstraint(columnNames = "username"), @UniqueConstraint(columnNames = "email")}, name = "user")
@@ -11,11 +12,15 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private boolean active;
+    private LocalDateTime date_created;
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, boolean active, LocalDateTime date_created) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.active = active;
+        this.date_created = date_created;
     }
 
     public User() {
@@ -52,5 +57,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public LocalDateTime getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(LocalDateTime date_created) {
+        this.date_created = date_created;
     }
 }

@@ -1,11 +1,13 @@
-package com.guciowons.footballguesser.Authentication.Register;
+package com.guciowons.footballguesser.Users.Authentication.Register;
 
-import com.guciowons.footballguesser.Authentication.Excepitons.EmailExistsException;
-import com.guciowons.footballguesser.Authentication.Excepitons.EmptyParamsException;
-import com.guciowons.footballguesser.Authentication.Excepitons.UsernameExistsException;
-import com.guciowons.footballguesser.Authentication.User;
-import com.guciowons.footballguesser.Authentication.UserRepository;
+import com.guciowons.footballguesser.Users.Authentication.Excepitons.EmailExistsException;
+import com.guciowons.footballguesser.Users.Authentication.Excepitons.EmptyParamsException;
+import com.guciowons.footballguesser.Users.Authentication.Excepitons.UsernameExistsException;
+import com.guciowons.footballguesser.Users.User;
+import com.guciowons.footballguesser.Users.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class UserRegisterService {
@@ -25,6 +27,6 @@ public class UserRegisterService {
         if(userRepository.existsByUsername(username)){
             throw new UsernameExistsException("Username is already taken");
         }
-        return userRepository.save(new User(username, email, password));
+        return userRepository.save(new User(username, email, password, true, LocalDateTime.now()));
     }
 }

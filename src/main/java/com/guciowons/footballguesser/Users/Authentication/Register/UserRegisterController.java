@@ -1,6 +1,6 @@
-package com.guciowons.footballguesser.Authentication.Register;
+package com.guciowons.footballguesser.Users.Authentication.Register;
 
-import com.guciowons.footballguesser.Authentication.User;
+import com.guciowons.footballguesser.Users.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;

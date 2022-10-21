@@ -1,8 +1,8 @@
-package com.guciowons.footballguesser.Authentication.Login;
+package com.guciowons.footballguesser.Users.Authentication.Login;
 
-import com.guciowons.footballguesser.Authentication.Excepitons.IncorrectLoginException;
-import com.guciowons.footballguesser.Authentication.User;
-import com.guciowons.footballguesser.Authentication.UserRepository;
+import com.guciowons.footballguesser.Users.Authentication.Excepitons.IncorrectLoginException;
+import com.guciowons.footballguesser.Users.User;
+import com.guciowons.footballguesser.Users.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 

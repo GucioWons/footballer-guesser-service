@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.Authentication.Excepitons;
+package com.guciowons.footballguesser.Users.Authentication.Excepitons;
 
 public class IncorrectLoginException extends AuthorizationException{
     public IncorrectLoginException(String errorMessage) {

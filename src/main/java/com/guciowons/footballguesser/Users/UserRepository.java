@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.Authentication;
+package com.guciowons.footballguesser.Users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

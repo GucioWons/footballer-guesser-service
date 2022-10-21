@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.Authentication.Excepitons;
+package com.guciowons.footballguesser.Users.Authentication.Excepitons;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

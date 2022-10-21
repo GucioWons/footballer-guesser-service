@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.Authentication.Login;
+package com.guciowons.footballguesser.Users.Authentication.Login;
 
 public class Login {
     private String email;
