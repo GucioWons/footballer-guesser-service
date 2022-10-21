@@ -4,6 +4,8 @@ import com.guciowons.footballguesser.External.CompetitionConverter;
 import com.guciowons.footballguesser.External.Teams;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class LeagueService {
     private final LeagueRepository leagueRepository;
@@ -16,5 +18,9 @@ public class LeagueService {
 
     public League createLeague(Teams.Competition competition){
         return leagueRepository.save(competitionConverter.convertCompetitionToLeague(competition));
+    }
+
+    public Optional<League> getLeagueById(Integer leagueId){
+        return leagueRepository.findById(leagueId);
     }
 }
