@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.Club;
+package com.guciowons.footballguesser.Footballers.Club;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

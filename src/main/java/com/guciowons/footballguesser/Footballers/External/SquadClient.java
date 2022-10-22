@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.External;
+package com.guciowons.footballguesser.Footballers.External;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

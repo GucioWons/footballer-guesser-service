@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.External;
+package com.guciowons.footballguesser.Footballers.External;
 
 import java.util.List;
 

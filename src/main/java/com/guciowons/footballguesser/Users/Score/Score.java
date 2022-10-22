@@ -1,6 +1,6 @@
 package com.guciowons.footballguesser.Users.Score;
 
-import com.guciowons.footballguesser.League.League;
+import com.guciowons.footballguesser.Footballers.League.League;
 import com.guciowons.footballguesser.Users.User;
 
 import javax.persistence.*;

@@ -1,7 +1,7 @@
-package com.guciowons.footballguesser.League;
+package com.guciowons.footballguesser.Footballers.League;
 
-import com.guciowons.footballguesser.External.CompetitionConverter;
-import com.guciowons.footballguesser.External.Teams;
+import com.guciowons.footballguesser.Footballers.External.CompetitionConverter;
+import com.guciowons.footballguesser.Footballers.External.Teams;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

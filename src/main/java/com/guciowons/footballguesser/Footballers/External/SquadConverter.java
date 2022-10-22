@@ -1,8 +1,8 @@
-package com.guciowons.footballguesser.External;
+package com.guciowons.footballguesser.Footballers.External;
 
-import com.guciowons.footballguesser.Club.Club;
-import com.guciowons.footballguesser.footballer.Footballer;
-import com.guciowons.footballguesser.footballer.Position;
+import com.guciowons.footballguesser.Footballers.Club.Club;
+import com.guciowons.footballguesser.Footballers.Footballer.Footballer;
+import com.guciowons.footballguesser.Footballers.Footballer.Position;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

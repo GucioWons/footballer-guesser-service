@@ -1,8 +1,8 @@
-package com.guciowons.footballguesser.Club;
+package com.guciowons.footballguesser.Footballers.Club;
 
-import com.guciowons.footballguesser.External.TeamConverter;
-import com.guciowons.footballguesser.External.Teams;
-import com.guciowons.footballguesser.League.League;
+import com.guciowons.footballguesser.Footballers.External.TeamConverter;
+import com.guciowons.footballguesser.Footballers.External.Teams;
+import com.guciowons.footballguesser.Footballers.League.League;
 import org.springframework.stereotype.Service;
 
 @Service

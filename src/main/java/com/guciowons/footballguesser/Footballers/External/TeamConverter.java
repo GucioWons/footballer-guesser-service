@@ -1,7 +1,7 @@
-package com.guciowons.footballguesser.External;
+package com.guciowons.footballguesser.Footballers.External;
 
-import com.guciowons.footballguesser.Club.Club;
-import com.guciowons.footballguesser.League.League;
+import com.guciowons.footballguesser.Footballers.Club.Club;
+import com.guciowons.footballguesser.Footballers.League.League;
 import org.springframework.stereotype.Component;
 
 @Component

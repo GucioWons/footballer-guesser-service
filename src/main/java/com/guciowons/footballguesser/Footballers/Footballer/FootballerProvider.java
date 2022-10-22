@@ -1,11 +1,11 @@
-package com.guciowons.footballguesser.footballer;
+package com.guciowons.footballguesser.Footballers.Footballer;
 
-import com.guciowons.footballguesser.Club.ClubService;
-import com.guciowons.footballguesser.External.SquadClient;
-import com.guciowons.footballguesser.External.SquadConverter;
-import com.guciowons.footballguesser.External.Teams;
-import com.guciowons.footballguesser.League.League;
-import com.guciowons.footballguesser.League.LeagueService;
+import com.guciowons.footballguesser.Footballers.Club.ClubService;
+import com.guciowons.footballguesser.Footballers.External.SquadClient;
+import com.guciowons.footballguesser.Footballers.External.SquadConverter;
+import com.guciowons.footballguesser.Footballers.External.Teams;
+import com.guciowons.footballguesser.Footballers.League.League;
+import com.guciowons.footballguesser.Footballers.League.LeagueService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.League;
+package com.guciowons.footballguesser.Footballers.League;
 
 import javax.persistence.*;
 

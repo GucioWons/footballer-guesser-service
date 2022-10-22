@@ -1,6 +1,6 @@
-package com.guciowons.footballguesser.Club;
+package com.guciowons.footballguesser.Footballers.Club;
 
-import com.guciowons.footballguesser.League.League;
+import com.guciowons.footballguesser.Footballers.League.League;
 
 import javax.persistence.*;
 
