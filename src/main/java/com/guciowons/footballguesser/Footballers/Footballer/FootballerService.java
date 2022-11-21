@@ -2,6 +2,8 @@ package com.guciowons.footballguesser.Footballers.Footballer;
 
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -14,10 +16,10 @@ public class FootballerService {
         this.footballerProvider = footballerProvider;
     }
 
-//    @PostConstruct
-//    public void getFootballersFromExternalApi(){
-//        footballerProvider.getFootballers(Arrays.asList("BL1", "PL"));
-//    }
+    @PostConstruct
+    public void getFootballersFromExternalApi(){
+        footballerProvider.getFootballers(Arrays.asList("BL1", "PL"));
+    }
 
     public List<Footballer> getFootballers(){
         return footballerRepository.findAll();

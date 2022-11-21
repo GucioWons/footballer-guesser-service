@@ -25,6 +25,7 @@ public class Teams {
     public static class Competition {
         private int id;
         private String name;
+        private String emblem;
 
         public int getId() {
             return id;
@@ -41,12 +42,21 @@ public class Teams {
         public void setName(String name) {
             this.name = name;
         }
+
+        public String getEmblem() {
+            return emblem;
+        }
+
+        public void setEmblem(String emblem) {
+            this.emblem = emblem;
+        }
     }
 
     public static class Team {
         private int id;
         private String name;
         private String tla;
+        private String crest;
 
         public int getId() {
             return id;
@@ -70,6 +80,14 @@ public class Teams {
 
         public void setTla(String tla) {
             this.tla = tla;
+        }
+
+        public String getCrest() {
+            return crest;
+        }
+
+        public void setCrest(String crest) {
+            this.crest = crest;
         }
     }
 }

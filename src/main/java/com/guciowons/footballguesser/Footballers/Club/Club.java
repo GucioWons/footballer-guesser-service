@@ -15,12 +15,14 @@ public class Club {
     private String shortcut;
     @ManyToOne
     private League league;
+    private String url;
 
-    public Club(Integer externalId, String name, String shortcut, League league) {
+    public Club(Integer externalId, String name, String shortcut, League league, String url) {
         this.externalId = externalId;
         this.name = name;
         this.shortcut = shortcut;
         this.league = league;
+        this.url = url;
     }
 
     public Club() {
@@ -65,5 +67,13 @@ public class Club {
 
     public void setLeague(League league) {
         this.league = league;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

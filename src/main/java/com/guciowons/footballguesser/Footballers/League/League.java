@@ -12,9 +12,12 @@ public class League {
     private Integer externalId;
     private String name;
 
-    public League(Integer externalId, String name) {
+    private String url;
+
+    public League(Integer externalId, String name, String url) {
         this.externalId = externalId;
         this.name = name;
+        this.url = url;
     }
 
     public League() {
@@ -43,5 +46,13 @@ public class League {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
