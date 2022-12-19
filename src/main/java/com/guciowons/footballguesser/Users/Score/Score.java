@@ -4,9 +4,10 @@ import com.guciowons.footballguesser.Footballers.League.League;
 import com.guciowons.footballguesser.Users.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"user_id", "league_id"})}, name = "score")
+@Table(name = "score")
 public class Score {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,12 +16,14 @@ public class Score {
     private User user;
     @ManyToOne
     private League league;
-    private Long points;
+    private Integer points;
+    private LocalDateTime dateTime;
 
-    public Score(User user, League league, Long points) {
+    public Score(User user, League league, Integer points, LocalDateTime dateTime) {
         this.user = user;
         this.league = league;
         this.points = points;
+        this.dateTime = dateTime;
     }
 
     public Score() {
@@ -51,11 +54,19 @@ public class Score {
         this.league = league;
     }
 
-    public Long getPoints() {
+    public Integer getPoints() {
         return points;
     }
 
-    public void setPoints(Long points) {
+    public void setPoints(Integer points) {
         this.points = points;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 }

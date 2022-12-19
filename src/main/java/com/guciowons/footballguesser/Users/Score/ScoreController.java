@@ -4,6 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/scores")
 public class ScoreController {
@@ -14,16 +17,26 @@ public class ScoreController {
     }
 
     @PostMapping
-    public ResponseEntity<Score> createScore(@RequestParam Integer userId, @RequestParam Integer leagueId, @RequestParam Long points){
+    public ResponseEntity<Score> createScore(@RequestParam Integer userId, @RequestParam Integer leagueId,
+                                             @RequestParam Integer points) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(scoreService.createScore(userId, leagueId, points));
     }
 
-    @PutMapping
-    public ResponseEntity<Score> addPoints(@RequestParam Integer userId, @RequestParam Integer leagueId, @RequestParam Long points){
+    @GetMapping
+    public ResponseEntity<List<ScoreSummarized>> getScores(@RequestParam Optional<String> time,
+                                                           @RequestParam Optional<Integer> leagueId) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(scoreService.addPoints(userId, leagueId, points));
+                .body(getScoresFromService(time, leagueId));
+    }
+
+    private List<ScoreSummarized> getScoresFromService(Optional<String> time, Optional<Integer> leagueId) {
+        return leagueId
+                .map(id -> time.map(times -> scoreService.getLeagueScoresWithTime(times, id))
+                        .orElseGet(() -> scoreService.getLeagueScoresWithoutTime(id)))
+                .orElseGet(() -> time.map(scoreService::getScoresWithTime)
+                        .orElseGet(scoreService::getScoresWithoutTime));
     }
 }

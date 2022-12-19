@@ -1,5 +1,6 @@
 package com.guciowons.footballguesser.Footballers.Footballer;
 
+import com.guciowons.footballguesser.Footballers.League.LeagueSummarized;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,7 @@ public class FootballerController {
     }
 
     @GetMapping(value = "/league/{leagueId}")
-    public ResponseEntity<List<Footballer>> getFootballersByLeague(@PathVariable Integer leagueId){
+    public ResponseEntity<LeagueSummarized> getFootballersByLeague(@PathVariable Integer leagueId){
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(footballerService.getFootballersByLeague(leagueId));
