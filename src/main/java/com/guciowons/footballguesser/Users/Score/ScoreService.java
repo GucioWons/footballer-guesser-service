@@ -23,10 +23,11 @@ public class ScoreService {
         this.scoreSummarizer = scoreSummarizer;
     }
 
-    public Score createScore(Integer userId, Integer leagueId, Integer points) {
+    public ScoreResponse createScore(Integer userId, Integer leagueId, Integer points) {
         return userService.getUserById(userId)
                         .map(user -> leagueService.getLeagueById(leagueId)
                                 .map(league -> scoreRepository.save(new Score(user, league, points, LocalDateTime.now())))
+                                    .map(score -> new ScoreResponse(score.getPoints(), score.getDateTime(), score.getUser().getId()))
                                         .orElseThrow(() -> new IllegalArgumentException("No user")))
                                 .orElseThrow(() -> new IllegalArgumentException("No league"));
     }

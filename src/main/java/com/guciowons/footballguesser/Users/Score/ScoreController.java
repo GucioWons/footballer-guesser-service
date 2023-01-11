@@ -17,7 +17,7 @@ public class ScoreController {
     }
 
     @PostMapping
-    public ResponseEntity<Score> createScore(@RequestParam Integer userId, @RequestParam Integer leagueId,
+    public ResponseEntity<ScoreResponse> createScore(@RequestParam Integer userId, @RequestParam Integer leagueId,
                                              @RequestParam Integer points) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
