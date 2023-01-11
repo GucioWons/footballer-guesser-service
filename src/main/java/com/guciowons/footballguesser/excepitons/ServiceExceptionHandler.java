@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.users.authentication.excepitons;
+package com.guciowons.footballguesser.excepitons;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -9,9 +9,9 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class AuthorizationExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(value = { AuthorizationException.class })
-    protected ResponseEntity<Object> handleConflict(AuthorizationException e, WebRequest request) {
+public class ServiceExceptionHandler extends ResponseEntityExceptionHandler {
+    @ExceptionHandler(value = { ServiceException.class })
+    protected ResponseEntity<Object> handleConflict(ServiceException e, WebRequest request) {
         return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

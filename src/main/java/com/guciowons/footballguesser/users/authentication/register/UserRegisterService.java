@@ -1,8 +1,8 @@
 package com.guciowons.footballguesser.users.authentication.register;
 
-import com.guciowons.footballguesser.users.authentication.excepitons.EmailExistsException;
-import com.guciowons.footballguesser.users.authentication.excepitons.EmptyParamsException;
-import com.guciowons.footballguesser.users.authentication.excepitons.UsernameExistsException;
+import com.guciowons.footballguesser.excepitons.authentication.EmailExistsException;
+import com.guciowons.footballguesser.excepitons.authentication.EmptyParamsException;
+import com.guciowons.footballguesser.excepitons.authentication.UsernameExistsException;
 import com.guciowons.footballguesser.users.User;
 import com.guciowons.footballguesser.users.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCrypt;

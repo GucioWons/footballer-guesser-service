@@ -1,6 +1,6 @@
 package com.guciowons.footballguesser.users.authentication.login;
 
-import com.guciowons.footballguesser.users.authentication.excepitons.IncorrectLoginException;
+import com.guciowons.footballguesser.excepitons.authentication.IncorrectLoginException;
 import com.guciowons.footballguesser.users.User;
 import com.guciowons.footballguesser.users.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCrypt;

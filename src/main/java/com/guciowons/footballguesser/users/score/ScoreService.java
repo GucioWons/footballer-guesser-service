@@ -1,5 +1,8 @@
 package com.guciowons.footballguesser.users.score;
 
+import com.guciowons.footballguesser.excepitons.scores.IncorrectTimeException;
+import com.guciowons.footballguesser.excepitons.scores.IncorrectLeagueIdException;
+import com.guciowons.footballguesser.excepitons.scores.IncorrectUserIdException;
 import com.guciowons.footballguesser.footballers.league.LeagueService;
 import com.guciowons.footballguesser.users.UserService;
 import org.springframework.stereotype.Service;
@@ -27,24 +30,29 @@ public class ScoreService {
                         .map(user -> leagueService.getLeagueById(leagueId)
                                 .map(league -> scoreRepository.save(new Score(user, league, points, LocalDateTime.now())))
                                     .map(score -> new ScoreResponse(score.getPoints(), score.getDateTime(), score.getUser().getId()))
-                                        .orElseThrow(() -> new IllegalArgumentException("No user")))
-                                .orElseThrow(() -> new IllegalArgumentException("No league"));
+                                        .orElseThrow(() -> new IncorrectUserIdException("There isn't any league with id = " + userId)))
+                                .orElseThrow(() -> new IncorrectLeagueIdException("There isn't any user with id = " + leagueId));
     }
 
     public List<ScoreSummarized> getLeagueScoresWithTime(String time, Integer leagueId){
         if(time.equals("weekly")){
-            return scoreSummarizer.summarizeScores(scoreRepository.findByDateTimeAfterAndLeague_Id(LocalDateTime.now().minusWeeks(1), leagueId))
+            return scoreSummarizer.summarizeScores(scoreRepository.findByDateTimeAfterAndLeague(LocalDateTime.now().minusWeeks(1),
+                            leagueService.getLeagueById(leagueId).orElseThrow(
+                                    () -> new IncorrectLeagueIdException("There isn't any league with id = " + leagueId))))
                     .stream().sorted(Comparator.comparingInt(ScoreSummarized::getScore).reversed()).toList();
         }else if(time.equals("monthly")){
-            return scoreSummarizer.summarizeScores(scoreRepository.findByDateTimeAfterAndLeague_Id(LocalDateTime.now().minusMonths(1), leagueId))
+            return scoreSummarizer.summarizeScores(scoreRepository.findByDateTimeAfterAndLeague(LocalDateTime.now().minusMonths(1),
+                            leagueService.getLeagueById(leagueId).orElseThrow(
+                                    () -> new IncorrectLeagueIdException("There isn't any league with id = " + leagueId))))
                     .stream().sorted(Comparator.comparingInt(ScoreSummarized::getScore).reversed()).toList();
         }else{
-            throw new IllegalArgumentException();
+            throw new IncorrectTimeException("Incorrect time. Choose weekly, monthly or leave this field empty");
         }
     }
 
     public List<ScoreSummarized> getLeagueScoresWithoutTime(Integer leagueId){
-        return scoreSummarizer.summarizeScores(scoreRepository.findByLeague_Id(leagueId))
+        return scoreSummarizer.summarizeScores(scoreRepository.findByLeague(leagueService.getLeagueById(leagueId)
+                        .orElseThrow(() -> new IncorrectLeagueIdException("There isn't any league with id = " + leagueId))))
                 .stream().sorted(Comparator.comparingInt(ScoreSummarized::getScore).reversed()).toList();
     }
 
@@ -56,7 +64,7 @@ public class ScoreService {
             return scoreSummarizer.summarizeScores(scoreRepository.findByDateTimeAfter(LocalDateTime.now().minusMonths(1)))
                     .stream().sorted(Comparator.comparingInt(ScoreSummarized::getScore).reversed()).toList();
         }else{
-            throw new IllegalArgumentException();
+            throw new IncorrectTimeException("Incorrect time. Choose weekly, monthly or leave this field empty");
         }
     }
 
