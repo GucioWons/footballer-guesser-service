@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser;
+package com.guciowons.footballguesser.Health;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
