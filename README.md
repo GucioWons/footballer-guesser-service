@@ -1,5 +1,5 @@
 
-# Footballer guesser application
+# Footballer guesser service
 
 This is a Spring appplication created to manage the data needed to use the football guesser mobile app.
 
