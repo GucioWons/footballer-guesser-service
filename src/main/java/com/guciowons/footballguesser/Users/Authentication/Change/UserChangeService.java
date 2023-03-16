@@ -15,7 +15,15 @@ public class UserChangeService {
     }
 
     public User changePassword(String email, String oldPassword, String newPassword){
-        return null;
+        return userRepository.findByEmail(email)
+                .filter(user -> BCrypt.checkpw(oldPassword, user.getPassword()))
+                .map(user -> changePasswordAndSave(user, newPassword))
+                .orElseThrow(() -> new IncorrectLoginException("Wrong password"));
+    }
+
+    private User changePasswordAndSave(User user, String newPassword){
+        user.setPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()));
+        return userRepository.save(user);
     }
 
     public User changeEmail(String password, String oldEmail, String newEmail){
