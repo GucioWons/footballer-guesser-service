@@ -1,6 +1,8 @@
 package com.guciowons.footballguesser.Users.Authentication.Change;
 
+import com.guciowons.footballguesser.Users.Authentication.Excepitons.EmailExistsException;
 import com.guciowons.footballguesser.Users.Authentication.Excepitons.IncorrectLoginException;
+import com.guciowons.footballguesser.Users.Authentication.Excepitons.UsernameExistsException;
 import com.guciowons.footballguesser.Users.User;
 import com.guciowons.footballguesser.Users.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -34,11 +36,28 @@ public class UserChangeService {
     }
 
     private User changeEmailAndSave(User user, String newEmail){
-        user.setEmail(newEmail);
-        return userRepository.save(user);
+        if(!userRepository.existsByEmail(newEmail)){
+            user.setEmail(newEmail);
+            return userRepository.save(user);
+        }else{
+            throw new EmailExistsException("Email already taken!");
+        }
     }
 
     public User changeUsername(String email, String password, String newUsername){
-        return null;
+        return userRepository.findByEmail(email)
+                .filter(user -> BCrypt.checkpw(password, user.getPassword()))
+                .map(user -> changeUsernameAndSave(user, newUsername))
+                .orElseThrow(() -> new IncorrectLoginException("Wrong password"));
+    }
+
+    private User changeUsernameAndSave(User user, String newUsername){
+        if(!userRepository.existsByUsername(newUsername)){
+            user.setUsername(newUsername);
+            return userRepository.save(user);
+        }else{
+            throw new UsernameExistsException("Username already taken!");
+        }
+
     }
 }
