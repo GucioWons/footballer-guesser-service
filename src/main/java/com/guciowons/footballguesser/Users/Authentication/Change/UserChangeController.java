@@ -3,9 +3,10 @@ package com.guciowons.footballguesser.Users.Authentication.Change;
 import com.guciowons.footballguesser.Users.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/change")
 public class UserChangeController {
     private final UserChangeService userChangeService;
 
@@ -13,19 +14,22 @@ public class UserChangeController {
         this.userChangeService = userChangeService;
     }
 
-    public ResponseEntity<User> changePassword(String email, String oldPassword, String newPassword){
+    @PostMapping("/password")
+    public ResponseEntity<User> changePassword(@RequestParam String email, @RequestParam String oldPassword, @RequestParam String newPassword){
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(userChangeService.changePassword(email, oldPassword, newPassword));
     }
 
-    public ResponseEntity<User> changeEmail(String password, String oldEmail, String newEmail){
+    @PostMapping("/email")
+    public ResponseEntity<User> changeEmail(@RequestParam String password, @RequestParam String oldEmail, @RequestParam String newEmail){
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(userChangeService.changeEmail(password, oldEmail, newEmail));
     }
 
-    public ResponseEntity<User> changeUsername(String email, String password, String newUsername){
+    @PostMapping("/username")
+    public ResponseEntity<User> changeUsername(@RequestParam String email, @RequestParam String password, @RequestParam String newUsername){
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(userChangeService.changeUsername(email, password, newUsername));
