@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.users.score;
+package com.guciowons.footballguesser.score;
 
 public class ScoreSummarized {
     private final String username;

@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.users.score;
+package com.guciowons.footballguesser.score;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.users;
+package com.guciowons.footballguesser.user;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

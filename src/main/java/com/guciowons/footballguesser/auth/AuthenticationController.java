@@ -1,5 +1,8 @@
 package com.guciowons.footballguesser.auth;
 
+import com.guciowons.footballguesser.auth.dto.AuthenticateDTO;
+import com.guciowons.footballguesser.auth.dto.RegisterDTO;
+import com.guciowons.footballguesser.auth.dto.UserResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +20,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticateDTO> register(@RequestBody UserDTO register){
+    public ResponseEntity<UserResponseDTO> register(@RequestBody RegisterDTO register){
         return ResponseEntity.status(HttpStatus.CREATED).body(authenticationService.register(register));
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticateDTO> authenticate(@RequestBody UserDTO auth){
+    public ResponseEntity<UserResponseDTO> authenticate(@RequestBody AuthenticateDTO auth){
         return ResponseEntity.status(HttpStatus.OK).body(authenticationService.authenticate(auth));
     }
 }

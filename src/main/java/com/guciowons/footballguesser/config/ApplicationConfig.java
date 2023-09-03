@@ -1,6 +1,6 @@
 package com.guciowons.footballguesser.config;
 
-import com.guciowons.footballguesser.users.UserRepository;
+import com.guciowons.footballguesser.user.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
