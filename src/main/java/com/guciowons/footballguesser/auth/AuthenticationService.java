@@ -33,11 +33,13 @@ public class AuthenticationService {
         User user = new User(register.username(), register.email(), passwordEncoder.encode(register.password()),
                 true, LocalDateTime.now());
         user.setRole(Role.Admin);
+        //TODO Role, verification
         userRepository.save(user);
         return new UserResponseDTO(user.getUsername(), user.getEmail(), user.getPassword(), jwtService.generateToken(user));
     }
 
     public UserResponseDTO authenticate(AuthenticateDTO auth) {
+        //TODO username/email authentication
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(auth.login(), auth.password()));
         User user = userRepository.findByUsername(auth.login())
                 .orElseThrow(() -> new UsernameNotFoundException("DUPA"));
