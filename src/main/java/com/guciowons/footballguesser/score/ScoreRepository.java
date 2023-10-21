@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.users.score;
+package com.guciowons.footballguesser.score;
 
 import com.guciowons.footballguesser.footballers.league.League;
 import org.springframework.data.jpa.repository.JpaRepository;

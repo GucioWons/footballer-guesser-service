@@ -1,25 +1,33 @@
-package com.guciowons.footballguesser.users;
+package com.guciowons.footballguesser.user;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(uniqueConstraints={@UniqueConstraint(columnNames = "username"), @UniqueConstraint(columnNames = "email")}, name = "user")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
     private String email;
     private String password;
-    private boolean active;
+    private boolean enabled;
     private LocalDateTime date_created;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public User(String username, String email, String password, boolean active, LocalDateTime date_created) {
+    public User(String username, String email, String password, boolean enabled, LocalDateTime date_created) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.active = active;
+        this.enabled = enabled;
         this.date_created = date_created;
     }
 
@@ -39,6 +47,21 @@ public class User {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -51,6 +74,11 @@ public class User {
         this.email = email;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
     public String getPassword() {
         return password;
     }
@@ -59,12 +87,12 @@ public class User {
         this.password = password;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setEnabled(boolean active) {
+        this.enabled = active;
     }
 
     public LocalDateTime getDate_created() {
@@ -73,5 +101,13 @@ public class User {
 
     public void setDate_created(LocalDateTime date_created) {
         this.date_created = date_created;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

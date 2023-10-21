@@ -1,7 +1,7 @@
-package com.guciowons.footballguesser.users.score;
+package com.guciowons.footballguesser.score;
 
 import com.guciowons.footballguesser.footballers.league.League;
-import com.guciowons.footballguesser.users.User;
+import com.guciowons.footballguesser.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

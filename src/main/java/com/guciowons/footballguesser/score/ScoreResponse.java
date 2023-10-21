@@ -1,4 +1,4 @@
-package com.guciowons.footballguesser.users.score;
+package com.guciowons.footballguesser.score;
 
 import java.time.LocalDateTime;
 

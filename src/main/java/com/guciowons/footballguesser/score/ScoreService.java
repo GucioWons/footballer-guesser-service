@@ -1,10 +1,10 @@
-package com.guciowons.footballguesser.users.score;
+package com.guciowons.footballguesser.score;
 
 import com.guciowons.footballguesser.excepitons.scores.IncorrectTimeException;
 import com.guciowons.footballguesser.excepitons.scores.IncorrectLeagueIdException;
 import com.guciowons.footballguesser.excepitons.scores.IncorrectUserIdException;
 import com.guciowons.footballguesser.footballers.league.LeagueService;
-import com.guciowons.footballguesser.users.UserService;
+import com.guciowons.footballguesser.user.UserService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
