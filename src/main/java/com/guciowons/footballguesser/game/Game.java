@@ -1,5 +1,6 @@
 package com.guciowons.footballguesser.game;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.guciowons.footballguesser.footballers.footballer.Footballer;
 import com.guciowons.footballguesser.footballers.league.League;
 import com.guciowons.footballguesser.user.User;
@@ -13,6 +14,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @JsonIgnore
     @ManyToOne
     private User player;
     @ManyToOne
@@ -22,6 +24,18 @@ public class Game {
     @OneToMany(mappedBy = "game")
     private List<Guess> guesses;
     private boolean finished;
+
+    public Game(User player, League league, Footballer answer, List<Guess> guesses, boolean finished) {
+        this.player = player;
+        this.league = league;
+        this.answer = answer;
+        this.guesses = guesses;
+        this.finished = finished;
+    }
+
+    public Game() {
+
+    }
 
     public Integer getId() {
         return id;
